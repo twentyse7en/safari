@@ -1,78 +1,17 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect, useRef } from 'react';
+import { travelData } from './travelData';
 
-// Travel data
-const travelData = [
-  {
-    locationUrl: "https://www.google.com/maps/@38.995368,22.934067,6.00z",
-    locationName: "Greece",
-    videos: [
-      {
-        link: "https://www.youtube.com/watch?v=qanWVGrC6WU",
-        title: "Oru Sanchariyude Diary Kurippukal | Greece | EPI 594"
-      },
-      {
-        link: "https://www.youtube.com/watch?v=wEQKezKyhA0",
-        title: "Oru Sanchariyude Diary Kurippukal | Greece | EPI 593"
-      }
-    ]
-  },
-  {
-    locationUrl: "https://www.google.com/maps/@41.008240,28.978359,10z",
-    locationName: "Turkey",
-    videos: [
-      {
-        link: "https://www.youtube.com/watch?v=examplelink1",
-        title: "Exploring Istanbul"
-      }
-    ]
-  },
-  {
-    locationUrl: "https://www.google.com/maps/@51.507351,-0.127758,10z",
-    locationName: "United Kingdom",
-    videos: []
-  },
-  {
-    locationUrl: "https://www.google.com/maps/@48.8566,2.3522,10z",
-    locationName: "France",
-    videos: [
-      {
-        link: "https://www.youtube.com/watch?v=paris_vid",
-        title: "A Walk Through Paris"
-      }
-    ]
-  },
-  {
-    locationUrl: "https://www.google.com/maps/@35.6895,139.6917,10z",
-    locationName: "Japan",
-    videos: [
-      {
-        link: "https://www.youtube.com/watch?v=tokyo_vid",
-        title: "Tokyo City Scape"
-      }
-    ]
-  }
-];
-
-// Utility functions
-const extractCoordinates = (url) => {
-  const match = url.match(/@(-?\d+\.?\d*),(-?\d+\.?\d*)/);
-  if (match) {
-    return [parseFloat(match[1]), parseFloat(match[2])];
-  }
-  return [48.8566, 2.3522]; // Default to Paris
-};
 
 // Map Component
-const MapComponent = ({ locationUrl}) => {
+const MapComponent = ({ lat, long, locationUrl}) => {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
 
   useEffect(() => {
     if (!mapRef.current || mapInstanceRef.current) return;
 
-    const coords = extractCoordinates(locationUrl);
-    
+    const coords = [lat, long]
     // Create map using Leaflet CDN (loaded globally)
     if (typeof L !== 'undefined') {
       const map = L.map(mapRef.current, {
@@ -288,7 +227,7 @@ const TravelCard = ({
       if (cardRef.current) {
         cardRef.current.style.transform = '';
         cardRef.current.style.opacity = '';
-        cardRef.current.style.zIndex = '';
+        cardRef.current.style.zIndex = zIndex;
       }
     }
     
@@ -343,16 +282,18 @@ const TravelCard = ({
       onClick={handleClick}
     >
       <MapComponent 
-        locationUrl={data.locationUrl} 
+        lat={data.lat ?? 0} 
+        long={data.long ?? 0}
+        locationUrl={data.locationUrl}
         locationName={data.locationName} 
       />
       <div className="card-content">
         <h2 className="card-title">{data.locationName}</h2>
         <p className="card-subtitle">Discover amazing travel stories</p>
         <div className="card-stats">
-          <div className="video-count">
+          {/* <div className="video-count">
             📹 {data.videos.length} video{data.videos.length !== 1 ? 's' : ''}
-          </div>
+          </div> */}
           <div className="tap-hint">
             Tap to explore →
           </div>
