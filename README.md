@@ -1,12 +1,8 @@
-# React + Vite
+# Safari
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Layout in the youtube is not enough for this, it deserve even better. I would like to see video based on map and group them based on country. I can continue watching where I have left. I wanted to solve these pain points. But as I have built it, I have few more ideas, which could add value.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## TODO
+- [ ] Add missing videos, not all the videos are added around 200 is available.
+- [ ] Mark in the map which videos I have already watched, Make it blue?!. If there is more videos in country I need to watch, then I can choose shades on blue.
+- [ ] May be include Sancharam videos.
