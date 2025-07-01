@@ -9,10 +9,7 @@ function SelectedLocation({ location, onVideoClick }) {
     return (
         <div>
             <h3 className="text-lg font-medium text-slate-600">{location.locationName}</h3>
-            <a href={location.location} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:text-blue-800 hover:underline mb-4 inline-block">
-                View on Google Maps
-            </a>
-            <div className="space-y-3 max-h-80 overflow-y-auto pr-2">
+            <div className="space-y-3">
                 {location.videos && location.videos.length > 0 ? (
                     location.videos.map(video => (
                         <VideoItem

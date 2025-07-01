@@ -5,7 +5,7 @@ function MapComponent({ travelData, onMarkerClick, onVideoInPopupClick, centerMa
     const leafletMapRef = useRef(null);
     const markersRef = useRef(null);
     const locationMarkersMapRef = useRef(new Map());
-    const [selectedLocation, setSelectedLocation] = useState(null);
+    const [selectedLocation, setSelectedLocation] = useState(null); // eslint-disable-line no-unused-vars
 
     const createPopupContent = (item) => {
         const videoCount = item.videos ? item.videos.length : 0;
@@ -145,18 +145,19 @@ function MapComponent({ travelData, onMarkerClick, onVideoInPopupClick, centerMa
                 marker.on('click', (e) => {
                     setSelectedLocation(item.locationName);
                     onMarkerClick(item.locationName);
-                    mapInstance.setView(e.latlng, mapInstance.getZoom() < 12 ? 12 : mapInstance.getZoom());
+                    mapInstance.setView(e.latlng, mapInstance.getZoom() < 4 ? 4 : mapInstance.getZoom());
                 });
 
                 markersRef.current.addLayer(marker);
                 locationMarkersMapRef.current.set(item.locationName, marker);
             });
 
+            // If markers exist, fit bounds but keep Serbia visible. Otherwise center on Serbia
             if (markersRef.current.getLayers().length > 0) {
                 mapInstance.fitBounds(markersRef.current.getBounds().pad(0.1));
-            } else {
-                mapInstance.setView([0, 0], 2);
-            }
+            } 
+            // Default to Serbia at zoom level 3
+            mapInstance.setView([44.0165, 21.0059], 3);
 
             mapInstance.on('popupopen', function (e) {
                 const popupNode = e.popup.getElement();
