@@ -11,16 +11,3 @@
 .card.dragging {
     transition: none !important;
 }
-
-/* Vintage styling */
-header {
-    background-image: 
-        linear-gradient(rgba(120, 53, 15, 0.95), rgba(120, 53, 15, 0.95)),
-        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03) 2px, transparent 2px, transparent 4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-header h1 {
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    letter-spacing: 0.05em;
-}
