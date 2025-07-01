@@ -8,16 +8,11 @@ function MapComponent({ travelData, onMarkerClick, onVideoInPopupClick, centerMa
     const [selectedLocation, setSelectedLocation] = useState(null); // eslint-disable-line no-unused-vars
 
     const createPopupContent = (item) => {
-        const videoCount = item.videos ? item.videos.length : 0;
-        
         return `
             <div class="airbnb-popup">
                 <div class="popup-header">
                     <div class="location-info">
                         <h3 class="location-title">${item.locationName}</h3>
-                        <div class="location-meta">
-                            <span class="video-count">${videoCount} video${videoCount !== 1 ? 's' : ''}</span>
-                        </div>
                     </div>
                 </div>
                 
@@ -26,13 +21,6 @@ function MapComponent({ travelData, onMarkerClick, onVideoInPopupClick, centerMa
                         <div class="videos-grid">
                             ${item.videos.slice(0, 3).map(video => `
                                 <div class="video-card">
-                                    <div class="video-thumbnail">
-                                        <div class="play-overlay">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                        </div>
-                                    </div>
                                     <div class="video-info">
                                         <a href="${video.link}"
                                            data-videolink="${video.link}"
@@ -61,17 +49,6 @@ function MapComponent({ travelData, onMarkerClick, onVideoInPopupClick, centerMa
                         <span>No videos available</span>
                     </div>
                 `}
-                
-                <div class="popup-footer">
-                    <a href="${item.location}" target="_blank" rel="noopener noreferrer" class="maps-link">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                            <polyline points="15,3 21,3 21,9"/>
-                            <line x1="10" y1="14" x2="21" y2="3"/>
-                        </svg>
-                        View on Google Maps
-                    </a>
-                </div>
             </div>
         `;
     };
